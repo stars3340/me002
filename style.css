@@ -159,7 +159,7 @@ h1, h2, h3 {
 
 /* Hero Section */
 #hero {
-    background: linear-gradient(rgba(26,26,26,0.8), rgba(26,26,26,0.8)), url('hero-bg.jpg'); /* 你可以替换为自己的背景图 */
+    background: linear-gradient(rgba(26,26,26,0.8), rgba(26,26,26,0.8)), url('hero-bg.svg'); /* 科技风格的背景图 */
     background-size: cover;
     background-position: center;
     color: #fff;
