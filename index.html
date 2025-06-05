@@ -3,155 +3,574 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王二狗 - 全栈工程师</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>王二狗 - 全栈工程师 | 极客空间</title>
+    
+    <!-- 预加载字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500;700&family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS 动画库 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- 自定义样式 -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">王二狗</div>
-            <ul>
-                <li><a href="#hero"><i class="fas fa-home"></i> 首页</a></li>
-                <li><a href="#about"><i class="fas fa-user"></i> 关于我</a></li>
-                <li><a href="#skills"><i class="fas fa-cogs"></i> 技能</a></li>
-                <li><a href="#projects"><i class="fas fa-project-diagram"></i> 项目</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> 联系我</a></li>
+    <!-- 粒子背景 -->
+    <div id="particles-js"></div>
+    
+    <!-- 矩阵代码雨背景 -->
+    <canvas id="matrix-rain"></canvas>
+    
+    <!-- 3D背景容器 -->
+    <div id="three-container"></div>
+    
+    <!-- 全局光效 -->
+    <div class="global-glow"></div>
+    
+    <!-- 加载屏幕 -->
+    <div id="loading-screen">
+        <div class="loading-container">
+            <div class="cyber-loader">
+                <div class="cyber-loader-inner"></div>
+            </div>
+            <div class="loading-text">
+                <span class="loading-text-words">INITIALIZING SYSTEM</span>
+                <span class="loading-dots">...</span>
+            </div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主导航 -->
+    <header class="cyber-header">
+        <nav class="cyber-nav" data-aos="fade-down">
+            <div class="nav-logo">
+                <span class="logo-brackets">&lt;</span>
+                <span class="logo-text">王二狗</span>
+                <span class="logo-brackets">/&gt;</span>
+                <div class="logo-glitch"></div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link" data-section="home">
+                    <i class="fas fa-terminal"></i>
+                    <span>root@home</span>
+                    <div class="nav-glitch"></div>
+                </a></li>
+                <li><a href="#about" class="nav-link" data-section="about">
+                    <i class="fas fa-user-secret"></i>
+                    <span>whoami</span>
+                    <div class="nav-glitch"></div>
+                </a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills">
+                    <i class="fas fa-code"></i>
+                    <span>skills.json</span>
+                    <div class="nav-glitch"></div>
+                </a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects">
+                    <i class="fas fa-rocket"></i>
+                    <span>./projects</span>
+                    <div class="nav-glitch"></div>
+                </a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">
+                    <i class="fas fa-satellite-dish"></i>
+                    <span>connect</span>
+                    <div class="nav-glitch"></div>
+                </a></li>
             </ul>
-            <div class="menu-toggle">
-                <div class="hamburger"></div>
+            
+            <div class="nav-toggle cyber-burger">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section id="hero">
-            <h1>你好，我是王二狗</h1>
-            <p>一位经验丰富的资深全栈工程师</p>
-            <p class="subtitle">专注于构建高效、可扩展的 Web 应用程序和解决方案</p>
-            <a href="#projects" class="cta-button"><i class="fas fa-briefcase"></i> 查看我的项目</a>
-        </section>
-
-        <section id="about">
-            <h2><i class="fas fa-user"></i> 关于我</h2>
-            <div class="about-content">
-                <img src="头像.png" alt="王二狗个人头像" class="profile-pic">
-                <p>我是一名经验丰富且充满激情的全栈工程师，拥有超过8年的 Web 应用设计、开发和部署经验。我精通多种前后端技术栈，在构建高性能、可扩展和用户友好的解决方案方面拥有卓越的记录。热衷于学习新技术，并致力于通过技术创新驱动业务增长。我具备优秀的团队协作和领导能力，曾在瀚海科技 (InnovateSphere Solutions) 担任资深全栈工程师，领导团队负责核心SaaS平台的设计与开发，通过微服务重构和CI/CD流程优化，显著提升了系统性能和迭代效率。我的目标是持续探索前沿技术，并将其应用于解决复杂的实际问题。</p>
-                <p>教育背景：<i class="fas fa-graduation-cap"></i> 计算机科学硕士 - 北京科技大学 | <i class="fas fa-graduation-cap"></i> 软件工程学士 - 华中科技大学</p>
-                <p>工作经历：<i class="fas fa-briefcase"></i> 资深全栈工程师 - 瀚海科技 (InnovateSphere Solutions)</p>
-                <a href="resume-wang-ergou.pdf" download class="cta-button"><i class="fas fa-download"></i> 下载完整简历</a>
+    <main class="cyber-main">
+        <!-- Hero Section -->
+        <section id="hero" class="cyber-hero">
+            <div class="hero-grid">
+                <!-- 命令行界面 -->
+                <div class="terminal-window" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="btn-close"></span>
+                            <span class="btn-minimize"></span>
+                            <span class="btn-maximize"></span>
+                        </div>
+                        <div class="terminal-title">wang_ergou@fullstack:~$</div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">wang_ergou@fullstack:~$</span>
+                            <span class="command">whoami</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output">Full-Stack Engineer | 8+ Years Experience</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">wang_ergou@fullstack:~$</span>
+                            <span class="command">cat mission.txt</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output typed-text" id="typed-output"></span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">wang_ergou@fullstack:~$</span>
+                            <span class="cursor">_</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3D头像显示 -->
+                <div class="avatar-container" data-aos="fade-left" data-aos-delay="800">
+                    <div class="avatar-frame">
+                        <div class="avatar-scan-lines"></div>
+                        <img src="头像.png" alt="王二狗" class="cyber-avatar">
+                        <div class="avatar-border"></div>
+                        <div class="avatar-corners">
+                            <div class="corner corner-tl"></div>
+                            <div class="corner corner-tr"></div>
+                            <div class="corner corner-bl"></div>
+                            <div class="corner corner-br"></div>
+                        </div>
+                    </div>
+                    <div class="status-indicators">
+                        <div class="status-item">
+                            <span class="status-label">STATUS</span>
+                            <span class="status-value online">ONLINE</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">LEVEL</span>
+                            <span class="status-value">SENIOR</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">MODE</span>
+                            <span class="status-value">CREATIVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 浮动数据元素 -->
+            <div class="floating-data">
+                <div class="data-cube" data-aos="fade-up" data-aos-delay="1000"></div>
+                <div class="data-stream"></div>
+                <div class="hologram-ring"></div>
             </div>
         </section>
 
-        <section id="skills">
-            <h2><i class="fas fa-code"></i> 我的技能</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3><i class="fas fa-desktop"></i> 前端技术</h3>
-                    <ul>
-                        <li><i class="fab fa-html5"></i> HTML5, <i class="fab fa-css3-alt"></i> CSS3 (Sass/LESS)</li>
-                        <li><i class="fab fa-js-square"></i> JavaScript (ES6+), <i class="fab fa-js-square"></i> TypeScript</li>
-                        <li><i class="fab fa-react"></i> React (Redux/Context API)</li>
-                        <li><i class="fab fa-vuejs"></i> Vue.js (Vuex/Pinia)</li>
-                        <li><i class="fab fa-angular"></i> Angular</li>
-                        <li><i class="fas fa-box-open"></i> Webpack, <i class="fas fa-cogs"></i> Babel</li>
-                        <li><i class="fas fa-mobile-alt"></i> PWA, <i class="fas fa-exchange-alt"></i> WebSockets</li>
-                    </ul>
+        <!-- About Section -->
+        <section id="about" class="cyber-section">
+            <div class="section-header" data-aos="fade-right">
+                <h2 class="cyber-title">
+                    <span class="title-prefix">02.</span>
+                    <span class="title-text">PROFILE_DATA.JSON</span>
+                    <div class="title-line"></div>
+                </h2>
+            </div>
+            
+            <div class="about-grid">
+                <div class="profile-card" data-aos="flip-left">
+                    <div class="card-header">
+                        <h3>PERSONAL_INFO</h3>
+                        <div class="card-status">
+                            <span class="status-dot active"></span>
+                            <span>VERIFIED</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <span class="info-label">NAME:</span>
+                            <span class="info-value">王二狗 (Wang Ergou)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">ROLE:</span>
+                            <span class="info-value">Senior Full-Stack Engineer</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">EXPERIENCE:</span>
+                            <span class="info-value">8+ Years</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">LOCATION:</span>
+                            <span class="info-value">China • Remote Capable</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">MISSION:</span>
+                            <span class="info-value">Building the Future with Code</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-server"></i> 后端技术</h3>
-                    <ul>
-                        <li><i class="fab fa-node-js"></i> Node.js (Express.js, NestJS)</li>
-                        <li><i class="fab fa-python"></i> Python (Django, Flask)</li>
-                        <li><i class="fab fa-java"></i> Java (Spring Boot, Spring Cloud)</li>
-                        <li><i class="fas fa-project-diagram"></i> RESTful API 设计, <i class="fas fa-share-alt"></i> GraphQL</li>
-                        <li><i class="fas fa-cubes"></i> 微服务架构</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-database"></i> 数据库</h3>
-                    <ul>
-                        <li><i class="fas fa-database"></i> SQL: PostgreSQL, MySQL</li>
-                        <li><i class="fas fa-database"></i> NoSQL: MongoDB, Redis</li>
-                        <li><i class="fas fa-database"></i> Elasticsearch</li>
-                        <li><i class="fas fa-cogs"></i> ORM (Sequelize, Hibernate)</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-cloud"></i> DevOps & 云服务</h3>
-                    <ul>
-                        <li><i class="fab fa-aws"></i> AWS (EC2, S3, RDS, EKS)</li>
-                        <li><i class="fab fa-docker"></i> Docker, <i class="fas fa-dharmachakra"></i> Kubernetes</li>
-                        <li><i class="fas fa-sync-alt"></i> CI/CD (GitHub Actions, Jenkins)</li>
-                        <li><i class="fas fa-cloud-upload-alt"></i> Terraform, Ansible</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-tools"></i> 其他关键技能</h3>
-                    <ul>
-                        <li><i class="fab fa-git-alt"></i> Git & GitHub/GitLab</li>
-                        <li><i class="fas fa-vial"></i> 测试 (Jest, Cypress, Selenium)</li>
-                        <li><i class="fas fa-users"></i> Agile/Scrum 方法论</li>
-                        <li><i class="fas fa-sitemap"></i> 软件架构设计</li>
-                        <li><i class="fas fa-tachometer-alt"></i> 系统性能优化</li>
-                    </ul>
+                
+                <div class="bio-terminal" data-aos="flip-right">
+                    <div class="terminal-header">
+                        <span>biography.sh</span>
+                    </div>
+                    <div class="terminal-content">
+                        <p>我是一名资深全栈工程师，专注于构建高性能、可扩展的现代化应用。在过去8年的职业生涯中，我深度参与了企业级SaaS平台的架构设计与开发，主导过多个关键项目的技术选型和团队管理。</p>
+                        <p>我热衷于探索前沿技术，从微服务架构到AI集成，从DevOps自动化到性能优化，持续推动技术创新在业务场景中的落地应用。</p>
+                        <div class="bio-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">100+</span>
+                                <span class="stat-label">Projects Deployed</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Technologies Mastered</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">10M+</span>
+                                <span class="stat-label">Lines of Code</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects">
-            <h2><i class="fas fa-project-diagram"></i> 项目经验</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="project-saas.svg" alt="企业级智能SaaS分析平台截图">
-                    <div class="project-card-content">
-                        <h3>企业级智能SaaS分析平台</h3>
-                        <p>一个多租户SaaS平台，为企业用户提供深度数据分析、可视化报告和业务洞察。利用微服务架构确保高可用性和弹性伸缩。</p>
-                        <p>技术栈：React, NestJS, TypeScript, PostgreSQL, Docker, Kubernetes, AWS</p>
+        <!-- Skills Section -->
+        <section id="skills" class="cyber-section">
+            <div class="section-header" data-aos="fade-left">
+                <h2 class="cyber-title">
+                    <span class="title-prefix">03.</span>
+                    <span class="title-text">TECH_STACK.ARRAY[]</span>
+                    <div class="title-line"></div>
+                </h2>
+            </div>
+            
+            <div class="skills-container">
+                <!-- 技能雷达图 -->
+                <div class="skills-radar" data-aos="zoom-in">
+                    <canvas id="skills-chart"></canvas>
+                    <div class="radar-center">
+                        <span>SKILL</span>
+                        <span>MATRIX</span>
                     </div>
-                    <a href="https://github.com/wangergou/smart-saas-analytics" target="_blank"><i class="fas fa-external-link-alt"></i> 查看项目 (GitHub)</a>
                 </div>
-                <div class="project-card">
-                    <img src="project-collab.svg" alt="实时协同办公套件截图">
-                    <div class="project-card-content">
-                        <h3>实时协同办公套件</h3>
-                        <p>一个基于Web的实时协同办公工具，支持文档共享编辑、即时通讯和任务管理，旨在提升团队协作效率。</p>
-                        <p>技术栈：Vue.js, Express.js, WebSockets, MongoDB, Redis</p>
+                
+                <!-- 技能列表 -->
+                <div class="skills-grid">
+                    <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                        <div class="category-header">
+                            <i class="fab fa-js-square"></i>
+                            <h3>Frontend</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item" data-level="95">
+                                <span>React.js</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                            <div class="skill-item" data-level="90">
+                                <span>Vue.js</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                            <div class="skill-item" data-level="85">
+                                <span>TypeScript</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="https://github.com/wangergou/realtime-collab-suite" target="_blank"><i class="fas fa-external-link-alt"></i> 查看项目 (GitHub)</a>
-                </div>
-                <div class="project-card">
-                    <img src="project-ai-learning.svg" alt="AI驱动的个性化学习系统截图">
-                    <div class="project-card-content">
-                        <h3>AI驱动的个性化学习系统</h3>
-                        <p>一个在线学习平台，通过分析用户的学习行为和偏好，利用机器学习算法为其推荐个性化的学习路径和资源。</p>
-                        <p>技术栈：Python (Django), React, TensorFlow, Scikit-learn, MySQL</p>
+                    
+                    <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                        <div class="category-header">
+                            <i class="fas fa-server"></i>
+                            <h3>Backend</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item" data-level="92">
+                                <span>Node.js</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                            <div class="skill-item" data-level="88">
+                                <span>Python</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                            <div class="skill-item" data-level="85">
+                                <span>Java</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="https://github.com/wangergou/ai-learning-platform" target="_blank"><i class="fas fa-external-link-alt"></i> 查看项目 (GitHub)</a>
+                    
+                    <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                        <div class="category-header">
+                            <i class="fas fa-cloud"></i>
+                            <h3>DevOps</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item" data-level="90">
+                                <span>Docker</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                            <div class="skill-item" data-level="85">
+                                <span>Kubernetes</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                            <div class="skill-item" data-level="88">
+                                <span>AWS</span>
+                                <div class="skill-bar"><div class="skill-progress"></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact">
-            <h2>联系我</h2>
-            <form id="contact-form">
-                <input type="text" name="name" placeholder="你的名字" required>
-                <input type="email" name="email" placeholder="你的邮箱" required>
-                <textarea name="message" placeholder="你想说的话" required></textarea>
-                <button type="submit" class="cta-button">发送消息</button>
-            </form>
-            <div class="social-links">
-                <a href="https://github.com/wangergou" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://linkedin.com/in/wangergou" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter (可选)</a>
+        <!-- Projects Section -->
+        <section id="projects" class="cyber-section">
+            <div class="section-header" data-aos="fade-right">
+                <h2 class="cyber-title">
+                    <span class="title-prefix">04.</span>
+                    <span class="title-text">PROJECT_ARCHIVE.DB</span>
+                    <div class="title-line"></div>
+                </h2>
+            </div>
+            
+            <div class="projects-container">
+                <div class="project-card cyber-project" data-aos="flip-up" data-aos-delay="100">
+                    <div class="project-header">
+                        <div class="project-id">PROJECT_001</div>
+                        <div class="project-status">
+                            <span class="status-dot deployed"></span>
+                            <span>DEPLOYED</span>
+                        </div>
+                    </div>
+                    <div class="project-preview">
+                        <img src="project-saas.svg" alt="SaaS Platform">
+                        <div class="project-overlay">
+                            <div class="tech-tags">
+                                <span>React</span>
+                                <span>NestJS</span>
+                                <span>K8s</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Enterprise SaaS Analytics Platform</h3>
+                        <p>高性能企业级SaaS平台，支持多租户架构，日处理数据量达TB级。采用微服务架构确保99.9%可用性。</p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">10M+</span>
+                                <span class="metric-label">Users</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">99.9%</span>
+                                <span class="metric-label">Uptime</span>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="action-btn primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>VIEW DEMO</span>
+                            </a>
+                            <a href="#" class="action-btn secondary">
+                                <i class="fab fa-github"></i>
+                                <span>SOURCE</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card cyber-project" data-aos="flip-up" data-aos-delay="200">
+                    <div class="project-header">
+                        <div class="project-id">PROJECT_002</div>
+                        <div class="project-status">
+                            <span class="status-dot active"></span>
+                            <span>ACTIVE</span>
+                        </div>
+                    </div>
+                    <div class="project-preview">
+                        <img src="project-collab.svg" alt="Collaboration Suite">
+                        <div class="project-overlay">
+                            <div class="tech-tags">
+                                <span>Vue.js</span>
+                                <span>Express</span>
+                                <span>WebRTC</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Real-time Collaboration Suite</h3>
+                        <p>实时协同办公平台，支持多人文档编辑、视频会议、项目管理。WebRTC技术保证低延迟通信。</p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">5K+</span>
+                                <span class="metric-label">Teams</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">< 50ms</span>
+                                <span class="metric-label">Latency</span>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="action-btn primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>VIEW DEMO</span>
+                            </a>
+                            <a href="#" class="action-btn secondary">
+                                <i class="fab fa-github"></i>
+                                <span>SOURCE</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card cyber-project" data-aos="flip-up" data-aos-delay="300">
+                    <div class="project-header">
+                        <div class="project-id">PROJECT_003</div>
+                        <div class="project-status">
+                            <span class="status-dot beta"></span>
+                            <span>BETA</span>
+                        </div>
+                    </div>
+                    <div class="project-preview">
+                        <img src="project-ai-learning.svg" alt="AI Learning System">
+                        <div class="project-overlay">
+                            <div class="tech-tags">
+                                <span>Python</span>
+                                <span>TensorFlow</span>
+                                <span>React</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI-Powered Learning Platform</h3>
+                        <p>基于机器学习的个性化学习平台，智能推荐学习路径，实时分析学习效果，提升学习效率200%。</p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">50K+</span>
+                                <span class="metric-label">Learners</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">95%</span>
+                                <span class="metric-label">Accuracy</span>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="action-btn primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>VIEW DEMO</span>
+                            </a>
+                            <a href="#" class="action-btn secondary">
+                                <i class="fab fa-github"></i>
+                                <span>SOURCE</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="cyber-section">
+            <div class="section-header" data-aos="fade-left">
+                <h2 class="cyber-title">
+                    <span class="title-prefix">05.</span>
+                    <span class="title-text">ESTABLISH_CONNECTION</span>
+                    <div class="title-line"></div>
+                </h2>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-terminal" data-aos="zoom-in">
+                    <div class="terminal-header">
+                        <span>secure_message.sh</span>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label>sender_name:</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>sender_email:</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>message_content:</label>
+                            <textarea name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span>TRANSMIT_MESSAGE</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="contact-info" data-aos="fade-left">
+                    <div class="info-panel">
+                        <h3>CONNECTION_PROTOCOLS</h3>
+                        <div class="protocol-item">
+                            <i class="fab fa-github"></i>
+                            <span>github.com/wangergou</span>
+                        </div>
+                        <div class="protocol-item">
+                            <i class="fab fa-linkedin"></i>
+                            <span>linkedin.com/in/wangergou</span>
+                        </div>
+                        <div class="protocol-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>wang.ergou@devmail.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="availability-status">
+                        <div class="status-header">
+                            <span>AVAILABILITY_STATUS</span>
+                            <div class="status-indicator online"></div>
+                        </div>
+                        <div class="status-details">
+                            <div class="status-line">
+                                <span>Response Time:</span>
+                                <span class="highlight">< 24 hours</span>
+                            </div>
+                            <div class="status-line">
+                                <span>Timezone:</span>
+                                <span class="highlight">UTC+8 (China)</span>
+                            </div>
+                            <div class="status-line">
+                                <span>Preferred Method:</span>
+                                <span class="highlight">Email / GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 王二狗. 保留所有权利.</p>
+    <!-- 底部信息 -->
+    <footer class="cyber-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span>&copy; 2024 王二狗 | Full-Stack Engineer</span>
+            </div>
+            <div class="footer-right">
+                <span>Built with 💚 and lots of ☕</span>
+            </div>
+        </div>
+        <div class="footer-matrix">
+            <span>[ SYSTEM READY ]</span>
+        </div>
     </footer>
 
+    <!-- 外部库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- 自定义脚本 -->
     <script src="script.js"></script>
 </body>
 </html> 
