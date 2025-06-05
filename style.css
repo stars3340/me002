@@ -1494,4 +1494,483 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* =====================================
+   高级鼠标拖尾效果样式
+   ===================================== */
+
+/* 鼠标拖尾容器优化 */
+#mouse-trail-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none !important;
+    z-index: 9998 !important;
+    overflow: hidden !important;
+}
+
+/* 粒子拖尾增强动画 */
+.trail-particle {
+    transition: all 0.1s ease-out;
+    will-change: transform, opacity;
+}
+
+.trail-particle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: inherit;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    filter: blur(2px);
+    animation: pulse-glow 1s ease-in-out infinite alternate;
+}
+
+/* 霓虹拖尾增强效果 */
+.neon-trail {
+    transition: all 0.1s ease-out;
+    will-change: transform, opacity;
+}
+
+.neon-trail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(3px);
+    opacity: 0.6;
+    animation: neon-flicker 0.5s ease-in-out infinite alternate;
+}
+
+/* 几何图案拖尾旋转动画 */
+.geometric-trail {
+    transition: all 0.1s ease-out;
+    will-change: transform, opacity;
+    animation: geometric-float 2s ease-in-out infinite;
+}
+
+.geometric-trail::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: currentColor;
+    opacity: 0.2;
+    transform: translate(-50%, -50%);
+    filter: blur(4px);
+    border-radius: 50%;
+}
+
+/* 数据流拖尾闪烁效果 */
+.data-stream-trail {
+    transition: all 0.1s ease-out;
+    will-change: transform, opacity;
+    animation: data-glitch 0.3s ease-in-out infinite;
+}
+
+.data-stream-trail::before {
+    content: attr(data-char);
+    position: absolute;
+    top: 0;
+    left: 2px;
+    color: #ff0080;
+    opacity: 0.7;
+    filter: blur(1px);
+}
+
+.data-stream-trail::after {
+    content: attr(data-char);
+    position: absolute;
+    top: 0;
+    left: -2px;
+    color: #00ffff;
+    opacity: 0.7;
+    filter: blur(1px);
+}
+
+/* 波纹效果增强 */
+.ripple-effect {
+    transition: all 0.1s ease-out;
+    will-change: transform, opacity;
+    animation: ripple-expand 1s ease-out forwards;
+}
+
+.ripple-effect::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+    animation: inner-ripple 1s ease-out forwards;
+}
+
+/* 鼠标拖尾动画关键帧 */
+@keyframes pulse-glow {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.1; }
+}
+
+@keyframes neon-flicker {
+    0% { opacity: 0.6; filter: blur(3px) brightness(1); }
+    50% { opacity: 0.8; filter: blur(2px) brightness(1.2); }
+    100% { opacity: 0.4; filter: blur(4px) brightness(0.8); }
+}
+
+@keyframes geometric-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(90deg); }
+    50% { transform: translateY(0) rotate(180deg); }
+    75% { transform: translateY(5px) rotate(270deg); }
+}
+
+@keyframes data-glitch {
+    0% { transform: translate(0); filter: hue-rotate(0deg); }
+    20% { transform: translate(-1px, 1px); filter: hue-rotate(90deg); }
+    40% { transform: translate(1px, -1px); filter: hue-rotate(180deg); }
+    60% { transform: translate(-1px, -1px); filter: hue-rotate(270deg); }
+    80% { transform: translate(1px, 1px); filter: hue-rotate(360deg); }
+    100% { transform: translate(0); filter: hue-rotate(0deg); }
+}
+
+@keyframes ripple-expand {
+    0% { 
+        width: 0; 
+        height: 0; 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% { 
+        width: 100px; 
+        height: 100px; 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
+@keyframes inner-ripple {
+    0% { 
+        width: 50%; 
+        height: 50%; 
+        opacity: 0.8; 
+    }
+    100% { 
+        width: 150%; 
+        height: 150%; 
+        opacity: 0; 
+    }
+}
+
+/* 磁性鼠标效果 - 当鼠标靠近可交互元素时 */
+.magnetic-element {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    will-change: transform;
+}
+
+.magnetic-element:hover {
+    transform: scale(1.05);
+}
+
+/* 鼠标进入区域时的特殊拖尾效果 */
+.special-trail-zone:hover ~ #mouse-trail-container .trail-particle {
+    animation: enhanced-trail 0.5s ease-out;
+}
+
+.special-trail-zone:hover ~ #mouse-trail-container .neon-trail {
+    animation: enhanced-neon 0.5s ease-out;
+}
+
+@keyframes enhanced-trail {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(2); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes enhanced-neon {
+    0% { width: 2px; height: 20px; }
+    50% { width: 4px; height: 40px; }
+    100% { width: 2px; height: 20px; }
+}
+
+/* 响应式优化 - 在移动设备上禁用拖尾效果 */
+@media (max-width: 768px) {
+    #mouse-trail-container {
+        display: none !important;
+    }
+}
+
+/* 高性能模式 - 减少动画复杂度 */
+@media (prefers-reduced-motion: reduce) {
+    .trail-particle,
+    .neon-trail,
+    .geometric-trail,
+    .data-stream-trail,
+    .ripple-effect {
+        animation: none !important;
+        transition: opacity 0.1s ease-out !important;
+    }
+    
+    .trail-particle::before,
+    .neon-trail::before,
+    .geometric-trail::before,
+    .data-stream-trail::before,
+    .data-stream-trail::after,
+    .ripple-effect::before {
+        display: none !important;
+    }
+}
+
+/* GPU 加速优化 */
+.trail-particle,
+.neon-trail,
+.geometric-trail,
+.data-stream-trail,
+.ripple-effect {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* 鼠标悬停交互增强 */
+.cyber-project:hover,
+.nav-link:hover,
+.action-btn:hover {
+    position: relative;
+}
+
+.cyber-project:hover::after,
+.nav-link:hover::after,
+.action-btn:hover::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle at center, transparent 40%, rgba(0, 255, 255, 0.1) 50%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+    animation: hover-pulse 1s ease-in-out infinite;
+}
+
+@keyframes hover-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* 自定义光标增强 */
+.custom-cursor {
+    mix-blend-mode: screen !important;
+    filter: drop-shadow(0 0 5px currentColor);
+}
+
+.custom-cursor .cursor-dot {
+    animation: cursor-pulse 1s ease-in-out infinite;
+}
+
+.custom-cursor .cursor-ring {
+    animation: cursor-ring-rotate 2s linear infinite;
+}
+
+@keyframes cursor-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.7; }
+}
+
+@keyframes cursor-ring-rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    25% { transform: translate(-50%, -50%) rotate(90deg) scale(1.1); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1); }
+    75% { transform: translate(-50%, -50%) rotate(270deg) scale(1.1); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+/* 页面滚动时的拖尾增强效果 */
+body.scrolling #mouse-trail-container .trail-particle {
+    animation: scroll-enhanced-particle 0.3s ease-out;
+}
+
+body.scrolling #mouse-trail-container .neon-trail {
+    animation: scroll-enhanced-neon 0.3s ease-out;
+}
+
+@keyframes scroll-enhanced-particle {
+    0% { filter: blur(0px) brightness(1); }
+    50% { filter: blur(2px) brightness(1.5); }
+    100% { filter: blur(0px) brightness(1); }
+}
+
+@keyframes scroll-enhanced-neon {
+    0% { filter: blur(1px) brightness(1); }
+    50% { filter: blur(3px) brightness(1.8); }
+    100% { filter: blur(1px) brightness(1); }
+}
+
+/* 鼠标拖尾的性能优化样式 */
+.trail-optimized {
+    will-change: transform, opacity;
+    contain: layout style paint;
+    transform: translateZ(0);
+}
+
+/* 暗色主题下的拖尾效果增强 */
+@media (prefers-color-scheme: dark) {
+    .trail-particle {
+        box-shadow: 0 0 15px currentColor, 0 0 25px currentColor, 0 0 35px currentColor;
+    }
+    
+    .neon-trail {
+        box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+    }
+    
+    .ripple-effect {
+        box-shadow: 0 0 25px currentColor, inset 0 0 25px currentColor;
+    }
+}
+
+/* 磁性拖尾专门样式 */
+.magnetic-trail {
+    transition: all 0.1s ease-out;
+    will-change: transform, opacity;
+    animation: magnetic-pulse 0.8s ease-in-out infinite alternate;
+}
+
+.magnetic-trail::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: inherit;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    filter: blur(3px);
+    animation: magnetic-glow 1.2s ease-in-out infinite;
+}
+
+@keyframes magnetic-pulse {
+    0% { transform: translate(-50%, -50%) scale(0.8); }
+    100% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes magnetic-glow {
+    0%, 100% { 
+        opacity: 0.4; 
+        filter: blur(3px) brightness(1); 
+    }
+    50% { 
+        opacity: 0.8; 
+        filter: blur(1px) brightness(1.5); 
+    }
+}
+
+/* 智能模式切换指示器 */
+.trail-mode-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+    color: #00ffff;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.trail-mode-indicator.active {
+    opacity: 1;
+}
+
+.trail-mode-indicator::before {
+    content: '🎯 ';
+    margin-right: 5px;
+}
+
+/* 高级交互反馈 */
+.magnetic-element {
+    position: relative;
+    overflow: hidden;
+}
+
+.magnetic-element::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00ffff, #ff0080, #39ff14, #b300ff);
+    background-size: 300% 300%;
+    opacity: 0;
+    z-index: -1;
+    border-radius: inherit;
+    animation: magnetic-border-flow 3s ease infinite;
+    transition: opacity 0.3s ease;
+}
+
+.magnetic-element:hover::before {
+    opacity: 0.3;
+}
+
+@keyframes magnetic-border-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* 性能优化 - 减少重绘 */
+.magnetic-trail,
+.trail-particle,
+.neon-trail,
+.geometric-trail,
+.data-stream-trail,
+.ripple-effect {
+    contain: layout style paint;
+    isolation: isolate;
+}
+
+/* 自适应质量设置 */
+@media (max-height: 600px) {
+    #mouse-trail-container .trail-particle {
+        display: none;
+    }
+    
+    #mouse-trail-container .neon-trail:nth-child(odd) {
+        display: none;
+    }
+}
+
+/* 电池优化模式 */
+@media (prefers-reduced-motion: reduce) {
+    .magnetic-trail,
+    .magnetic-trail::before {
+        animation: none !important;
+    }
+    
+    .magnetic-element::before {
+        animation: none !important;
+        background: #00ffff !important;
+    }
 } 
