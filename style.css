@@ -1,11 +1,12 @@
 /* 全局样式 */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Nunito Sans', 'Helvetica Neue', Arial, sans-serif; /* 更改为更现代的字体 */
     margin: 0;
     padding: 0;
-    background-color: #121212; /* 深色背景 */
-    color: #e0e0e0; /* 浅色文字 */
-    line-height: 1.6;
+    background-color: #1a1a1a; /* 调整深色背景 */
+    color: #f0f0f0; /* 调整浅色文字 */
+    line-height: 1.7;
+    overflow-x: hidden; /* 防止水平滚动条 */
 }
 
 header {
@@ -46,11 +47,36 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 1rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: flex; /* 用于对齐图标和文字 */
+    align-items: center; /* 用于对齐图标和文字 */
+    position: relative; /* 为下划线动画准备 */
+}
+
+nav ul li a i {
+    margin-right: 8px; /* 图标和文字间距 */
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: #00bcd4;
+    transition: all 0.3s ease-out;
+    transform: translateX(-50%);
+}
+
+nav ul li a:hover::after,
+nav ul li a.active-link::after { /* 当前活动链接的下划线 */
+    width: 100%;
 }
 
 nav ul li a:hover {
     color: #00bcd4; /* 青色高亮 */
+    transform: translateY(-2px);
 }
 
 /* 响应式导航栏 */
@@ -69,15 +95,27 @@ nav ul li a:hover {
 
 main {
     padding-top: 80px; /* 为固定导航栏留出空间 */
+    opacity: 0; /* 初始隐藏，配合JS做淡入 */
+    animation: fadeInPage 1s ease-out forwards; /* 页面加载淡入 */
+}
+
+@keyframes fadeInPage {
+    to {
+        opacity: 1;
+    }
 }
 
 section {
-    padding: 4rem 2rem;
+    padding: 5rem 2rem; /* 增加上下内边距 */
     text-align: center;
+    opacity: 0; /* 初始隐藏，用于JS控制的滚动动画 */
+    transform: translateY(50px); /* 初始向下偏移，用于JS控制的滚动动画 */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* 平滑过渡 */
 }
 
-section:nth-child(even) {
-    background-color: #1e1e1e;
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 h1, h2, h3 {
@@ -92,37 +130,69 @@ h1, h2, h3 {
 }
 
 .cta-button {
-    display: inline-block;
+    display: inline-flex; /* 用于对齐图标和文字 */
+    align-items: center; /* 用于对齐图标和文字 */
     background-color: #00bcd4;
     color: #fff;
-    padding: 0.8rem 1.5rem;
+    padding: 0.9rem 1.8rem; /* 调整按钮大小 */
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px; /* 更圆润的边角 */
     font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+}
+
+.cta-button i {
+    margin-right: 8px; /* 图标和文字间距 */
 }
 
 .cta-button:hover {
     background-color: #0097a7;
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05); /* 悬停时稍微放大并上移 */
+    box-shadow: 0 6px 20px rgba(0, 151, 167, 0.4);
+}
+
+.cta-button:active {
+    transform: translateY(-1px) scale(1.02); /* 点击时效果 */
+    box-shadow: 0 3px 10px rgba(0, 151, 167, 0.3);
 }
 
 /* Hero Section */
 #hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero-bg.jpg'); /* 你可以替换为自己的背景图 */
+    background: linear-gradient(rgba(26,26,26,0.8), rgba(26,26,26,0.8)), url('hero-bg.jpg'); /* 你可以替换为自己的背景图 */
     background-size: cover;
     background-position: center;
     color: #fff;
-    min-height: 80vh;
+    min-height: 100vh; /* 充满视窗高度 */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative; /* 用于可能的装饰元素 */
 }
 
 #hero h1 {
-    font-size: 3.5rem;
+    font-size: 4rem; /* 增大标题字号 */
     margin-bottom: 0.5rem;
+    animation: slideInDown 1s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+#hero p {
+    opacity: 0;
+    animation: slideInUp 1s ease-out 0.8s forwards;
+}
+
+#hero .subtitle {
+    font-size: 1.5rem; /* 增大副标题字号 */
+    color: #c0c0c0; /* 调整副标题颜色 */
+    margin-bottom: 2.5rem;
+    animation-delay: 1s; /* 延迟动画 */
+}
+
+#hero .cta-button {
+    opacity: 0;
+    animation: zoomIn 0.8s ease-out 1.2s forwards;
 }
 
 /* About Section */
@@ -133,13 +203,20 @@ h1, h2, h3 {
 }
 
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 180px; /* 增大头像尺寸 */
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
     margin: 0 auto 2rem;
     display: block;
-    border: 3px solid #00bcd4;
+    border: 5px solid #00bcd4; /* 加粗边框 */
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 188, 212, 0.5);
 }
 
 /* Skills Section */
@@ -152,16 +229,25 @@ h1, h2, h3 {
 }
 
 .skill-card {
-    background-color: #2a2a2a;
-    padding: 2rem;
-    border-radius: 8px;
+    background-color: #252525; /* 调整卡片背景色 */
+    padding: 2.5rem; /* 调整内边距 */
+    border-radius: 10px;
     text-align: left;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.4s ease, border-left 0.4s ease;
+    border-left: 5px solid transparent; /* 左边框动画 */
 }
 
 .skill-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    border-left: 5px solid #00bcd4;
+}
+
+.skill-card h3 i,
+.skill-card ul li i {
+    margin-right: 10px; /* 技能区图标间距 */
+    color: #00bcd4;
 }
 
 .skill-card h3 {
@@ -184,47 +270,71 @@ h1, h2, h3 {
 }
 
 .project-card {
-    background-color: #2a2a2a;
-    border-radius: 8px;
+    background-color: #252525;
+    border-radius: 10px;
     overflow: hidden;
     text-align: left;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.4s ease;
+    display: flex; /* 改为flex布局，便于控制内容 */
+    flex-direction: column;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.5);
 }
 
 .project-card img {
     width: 100%;
-    height: 200px;
+    height: 220px; /* 调整图片高度 */
     object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.05); /* 图片轻微放大效果 */
+}
+
+.project-card-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* 让内容区填充剩余空间 */
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card h3 {
     color: #00bcd4;
-    margin: 1rem 1.5rem;
+    margin: 0 0 0.8rem 0; /* 调整标题边距 */
 }
 
 .project-card p {
-    margin: 0 1.5rem 1rem;
-    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+    flex-grow: 1; /* 让描述填充空间，按钮保持在底部 */
 }
 
 .project-card a {
-    display: block;
-    text-align: center;
-    background-color: #00bcd4;
-    color: #fff;
-    padding: 0.8rem;
+    display: inline-flex; /* 用于对齐图标 */
+    align-items: center;
+    justify-content: center; /* 文字和图标居中 */
+    background-color: transparent;
+    color: #00bcd4;
+    padding: 0.8rem 1rem;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    border: 2px solid #00bcd4;
+    border-radius: 5px;
+    margin-top: auto; /* 将按钮推到底部 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-card a i {
+    margin-right: 8px;
 }
 
 .project-card a:hover {
-    background-color: #0097a7;
+    background-color: #00bcd4;
+    color: #1a1a1a;
 }
 
 /* Contact Section */
@@ -235,18 +345,22 @@ h1, h2, h3 {
     gap: 1rem;
 }
 
-#contact-form input, 
+#contact-form input,
 #contact-form textarea {
     width: 100%;
-    padding: 0.8rem;
+    padding: 1rem; /* 增大内边距 */
     border: 1px solid #444;
-    background-color: #2a2a2a;
-    color: #e0e0e0;
-    border-radius: 5px;
+    background-color: #252525;
+    color: #f0f0f0;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#contact-form textarea {
-    min-height: 150px;
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: #00bcd4;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
 }
 
 .social-links {
@@ -256,13 +370,14 @@ h1, h2, h3 {
 .social-links a {
     color: #00bcd4;
     text-decoration: none;
-    margin: 0 1rem;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+    margin: 0 1.2rem; /* 增大社交链接间距 */
+    font-size: 1.8rem; /* 增大社交链接图标 */
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover {
     color: #0097a7;
+    transform: scale(1.2); /* 悬停时放大图标 */
 }
 
 /* Footer */
@@ -326,8 +441,20 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-section > * {
-    animation: fadeIn 0.8s ease-out forwards;
+/* 动画 Keyframes (可以添加更多) */
+@keyframes slideInDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 /* 打字效果（JS控制） */
