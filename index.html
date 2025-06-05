@@ -18,6 +18,26 @@
     
     <!-- 自定义样式 -->
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* 确保项目卡片始终可见 */
+        .cyber-project {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* 防止AOS隐藏内容 */
+        [data-aos] {
+            opacity: 1 !important;
+            transform: none !important;
+            transition-property: none !important;
+        }
+        
+        /* 在AOS加载后重新启用动画 */
+        .aos-animate {
+            transition-property: all !important;
+        }
+    </style>
 </head>
 <body>
     <!-- 粒子背景 -->
@@ -325,9 +345,9 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- Projects Section - 移除问题AOS动画 -->
         <section id="projects" class="cyber-section">
-            <div class="section-header" data-aos="fade-right">
+            <div class="section-header">
                 <h2 class="cyber-title">
                     <span class="title-prefix">04.</span>
                     <span class="title-text">PROJECT_ARCHIVE.DB</span>
@@ -336,7 +356,7 @@
             </div>
             
             <div class="projects-container">
-                <div class="project-card cyber-project" data-aos="flip-up" data-aos-delay="100">
+                <div class="project-card cyber-project">
                     <div class="project-header">
                         <div class="project-id">PROJECT_001</div>
                         <div class="project-status">
@@ -380,7 +400,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card cyber-project" data-aos="flip-up" data-aos-delay="200">
+                <div class="project-card cyber-project">
                     <div class="project-header">
                         <div class="project-id">PROJECT_002</div>
                         <div class="project-status">
@@ -424,7 +444,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card cyber-project" data-aos="flip-up" data-aos-delay="300">
+                <div class="project-card cyber-project">
                     <div class="project-header">
                         <div class="project-id">PROJECT_003</div>
                         <div class="project-status">
