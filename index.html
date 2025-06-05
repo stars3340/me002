@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">个人Logo</div>
+            <ul>
+                <li><a href="#hero">首页</a></li>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#skills">技能</a></li>
+                <li><a href="#projects">项目</a></li>
+                <li><a href="#contact">联系我</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <div class="hamburger"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>你好，我是[你的名字]</h1>
+            <p>一位充满热情的[你的职业/身份]</p>
+            <p class="subtitle">专注于[你的主要技能或领域]</p>
+            <a href="#projects" class="cta-button">查看我的项目</a>
+        </section>
+
+        <section id="about">
+            <h2>关于我</h2>
+            <div class="about-content">
+                <img src="placeholder.jpg" alt="个人头像" class="profile-pic">
+                <p>这里是关于我的详细介绍。我热衷于学习新事物，并致力于用技术解决实际问题。在我的职业生涯中，我积累了丰富的经验，并参与了多个有趣的项目。我喜欢挑战，并不断提升自己的技能。</p>
+                <p>教育背景：[你的学校] - [你的专业]</p>
+                <p>工作经历：[你的公司] - [你的职位]</p>
+                <a href="resume.pdf" download class="cta-button">下载简历</a>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>我的技能</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>前端技术</h3>
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3 (Flexbox, Grid)</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>React</li>
+                        <li>Vue.js</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>后端技术</h3>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Python (Django/Flask)</li>
+                        <li>Java (Spring Boot)</li>
+                        <li>数据库 (SQL, NoSQL)</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>其他技能</h3>
+                    <ul>
+                        <li>Git & GitHub</li>
+                        <li>Docker</li>
+                        <li>敏捷开发</li>
+                        <li>沟通与协作</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>项目经验</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="project1.jpg" alt="项目1截图">
+                    <h3>项目一：个人博客</h3>
+                    <p>一个使用现代前端框架搭建的个人博客系统。</p>
+                    <p>技术栈：React, Node.js, MongoDB</p>
+                    <a href="#" target="_blank">查看项目</a>
+                </div>
+                <div class="project-card">
+                    <img src="project2.jpg" alt="项目2截图">
+                    <h3>项目二：电商平台</h3>
+                    <p>一个功能完善的模拟电商平台。</p>
+                    <p>技术栈：Vue.js, Spring Boot, MySQL</p>
+                    <a href="#" target="_blank">查看项目</a>
+                </div>
+                <div class="project-card">
+                    <img src="project3.jpg" alt="项目3截图">
+                    <h3>项目三：数据可视化工具</h3>
+                    <p>一个将复杂数据以图表形式展示的工具。</p>
+                    <p>技术栈：D3.js, Python, PostgreSQL</p>
+                    <a href="#" target="_blank">查看项目</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>联系我</h2>
+            <form id="contact-form">
+                <input type="text" name="name" placeholder="你的名字" required>
+                <input type="email" name="email" placeholder="你的邮箱" required>
+                <textarea name="message" placeholder="你想说的话" required></textarea>
+                <button type="submit" class="cta-button">发送消息</button>
+            </form>
+            <div class="social-links">
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 [你的名字]. 保留所有权利.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
